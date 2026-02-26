@@ -381,6 +381,13 @@ a:hover {
     color: var(--color-text);
 }
 
+.card-partner-note {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
 
 /* Card links */
 .card-links {
