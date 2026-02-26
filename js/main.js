@@ -38,39 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 
-    // Hero video: 10-second muted preview loop, click to play full
-    const streamEl = document.getElementById('hero-stream');
+    // Hero video: muted autoplay preview, click to play full with sound
+    const heroIframe = document.getElementById('hero-stream');
     const overlay = document.getElementById('hero-overlay');
-    const heroVideo = document.getElementById('hero-video');
-    let previewMode = true;
 
-    if (streamEl && overlay) {
-        // Ensure muted autoplay starts once the stream is ready
-        function tryAutoplay() {
-            streamEl.muted = true;
-            streamEl.play().catch(() => {});
-        }
-
-        streamEl.addEventListener('canplay', tryAutoplay, { once: true });
-        streamEl.addEventListener('loadeddata', tryAutoplay, { once: true });
-        // Fallback: try after a short delay in case SDK is slow
-        setTimeout(tryAutoplay, 2000);
-
-        // Loop back to start at 10 seconds during preview
-        streamEl.addEventListener('timeupdate', () => {
-            if (previewMode && streamEl.currentTime >= 10) {
-                streamEl.currentTime = 0;
-            }
-        });
-
-        // Click overlay to play full video
+    if (heroIframe && overlay) {
         overlay.addEventListener('click', () => {
-            previewMode = false;
-            streamEl.muted = false;
-            streamEl.loop = false;
-            streamEl.controls = true;
-            streamEl.currentTime = 0;
-            streamEl.play();
+            heroIframe.src = 'https://customer-7dbytdh7xqoratq6.cloudflarestream.com/2ed85544df653c082d1d8eab78556ee8/iframe?autoplay=true&preload=auto&controls=true';
             overlay.classList.add('hidden');
         });
     }
