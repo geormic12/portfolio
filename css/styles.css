@@ -498,6 +498,98 @@ a:hover {
     border-color: rgba(74, 124, 111, 0.5);
 }
 
+/* ---- Contact Modal ---- */
+.contact-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(44, 44, 46, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.contact-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.contact-modal {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 48px 56px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(44, 44, 46, 0.15);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    max-width: 400px;
+    width: 90%;
+}
+
+.contact-backdrop.open .contact-modal {
+    transform: translateY(0) scale(1);
+}
+
+.contact-modal h3 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.contact-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.contact-email {
+    display: inline-block;
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: 10px 28px;
+    border: 1px solid rgba(74, 124, 111, 0.2);
+    border-radius: 32px;
+    margin-top: 12px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-email:hover {
+    background: var(--color-accent-light);
+    border-color: var(--color-accent);
+    color: var(--color-accent-hover);
+}
+
+.contact-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.contact-close:hover {
+    color: var(--color-text);
+}
+
 /* ---- Footer ---- */
 .footer {
     padding: 56px 24px;

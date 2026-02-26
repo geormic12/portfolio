@@ -64,4 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Contact modal
+    const contactBtn = document.getElementById('contact-btn');
+    const backdrop = document.getElementById('contact-backdrop');
+    const closeBtn = document.getElementById('contact-close');
+
+    if (contactBtn && backdrop) {
+        contactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            backdrop.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            backdrop.classList.remove('open');
+        });
+
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                backdrop.classList.remove('open');
+            }
+        });
+    }
+
 });
