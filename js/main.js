@@ -45,6 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let previewMode = true;
 
     if (streamEl && overlay) {
+        // Ensure muted autoplay starts once the stream is ready
+        function tryAutoplay() {
+            streamEl.muted = true;
+            streamEl.play().catch(() => {});
+        }
+
+        streamEl.addEventListener('canplay', tryAutoplay, { once: true });
+        streamEl.addEventListener('loadeddata', tryAutoplay, { once: true });
+        // Fallback: try after a short delay in case SDK is slow
+        setTimeout(tryAutoplay, 2000);
+
         // Loop back to start at 10 seconds during preview
         streamEl.addEventListener('timeupdate', () => {
             if (previewMode && streamEl.currentTime >= 10) {
