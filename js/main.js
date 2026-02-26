@@ -38,4 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 
+    // Hero video: 10-second muted preview loop, click to play full
+    const streamEl = document.getElementById('hero-stream');
+    const overlay = document.getElementById('hero-overlay');
+    const heroVideo = document.getElementById('hero-video');
+    let previewMode = true;
+
+    if (streamEl && overlay) {
+        // Loop back to start at 10 seconds during preview
+        streamEl.addEventListener('timeupdate', () => {
+            if (previewMode && streamEl.currentTime >= 10) {
+                streamEl.currentTime = 0;
+            }
+        });
+
+        // Click overlay to play full video
+        overlay.addEventListener('click', () => {
+            previewMode = false;
+            streamEl.muted = false;
+            streamEl.loop = false;
+            streamEl.controls = true;
+            streamEl.currentTime = 0;
+            streamEl.play();
+            overlay.classList.add('hidden');
+        });
+    }
+
 });

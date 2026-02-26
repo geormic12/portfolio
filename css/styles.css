@@ -206,13 +206,64 @@ a:hover {
     background: #1a1a1a;
 }
 
-.video-embed iframe {
+.video-embed iframe,
+.video-embed stream {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* Hero video overlay (play button over preview) */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease;
+}
+
+.video-overlay:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.video-overlay .play-button {
+    width: 76px;
+    height: 76px;
+    background: rgba(74, 124, 111, 0.35);
+    border: 1px solid rgba(74, 124, 111, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.video-overlay:hover .play-button {
+    background: rgba(74, 124, 111, 0.5);
+    transform: scale(1.08);
+}
+
+.video-overlay .play-button svg {
+    width: 28px;
+    height: 28px;
+    fill: rgba(255, 255, 255, 0.9);
+    margin-left: 4px;
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 .card-video-embed {
