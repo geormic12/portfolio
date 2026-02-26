@@ -465,6 +465,13 @@ a:hover {
     transform: translateX(4px);
 }
 
+/* Card image */
+.card-image {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
 /* Pixel art gallery */
 .pixel-art-gallery {
     display: flex;
